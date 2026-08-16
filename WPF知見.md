@@ -29,3 +29,11 @@ ElementNameバインドはXAMLのNameScopeで解決されるため、これら�
 # カスタム添付プロパティの双方向バインド
 
 SetCurrentValueで反映する添付プロパティは、FrameworkPropertyMetadataOptions.BindsTwoWayByDefaultで既定化しておくと、XAML側でMode=TwoWay指定なしでも双方向反映できる。
+
+# .icoを小サイズ表示すると欠けて見える
+
+.icoは複数解像度のフレームを内包する。\
+BitmapImageにDecodePixelWidth/Heightを指定しないと、低品質なフレームが選ばれ小サイズ表示時に欠けて見えることがある。
+
+対応 : BitmapImage.DecodePixelWidth/Heightで明示的にデコードサイズを指定する。\
+Image側もRenderOptions.BitmapScalingMode=HighQualityにすると縮小表示がより綺麗になる。
