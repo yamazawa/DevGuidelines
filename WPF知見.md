@@ -51,3 +51,13 @@ Windows.Media.Ocr(OCR)などWinRT APIを使う際、Windows.Graphics.ImagingとS
 
 対応 : 衝突する型だけ`Windows.Graphics.Imaging.BitmapDecoder`のように完全修飾名で書く。\
 usingのエイリアス(`using WinRTBitmapDecoder = Windows.Graphics.Imaging.BitmapDecoder;`)でも回避できる。
+
+# Background未指定のPanelは空領域がヒットテスト対象外
+
+Grid等のPanelはBackground未指定(null)だと、子要素の無い空領域が
+ヒットテスト対象外になる。\
+その領域をクリックしても、そのPanel自身は元よりPreviewMouseDown等の
+イベントすら発生しない(子要素越しでも祖先越しでも拾えない)。
+
+対応 : クリックを拾いたいPanelに`Background="Transparent"`を指定する。\
+見た目は変わらずヒットテスト対象になる。
