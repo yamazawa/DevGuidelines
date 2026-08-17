@@ -37,3 +37,17 @@ BitmapImageにDecodePixelWidth/Heightを指定しないと、低品質なフレ�
 
 対応 : BitmapImage.DecodePixelWidth/Heightで明示的にデコードサイズを指定する。\
 Image側もRenderOptions.BitmapScalingMode=HighQualityにすると縮小表示がより綺麗になる。
+
+# .resxのDesigner.csはdotnet build(CLI)では自動生成されない
+
+Generator=PublicResXFileCodeGeneratorを設定していても、Visual Studioを介さないdotnet buildではDesigner.csの中身(プロパティ一覧)は更新されない。\
+.resxにキーを追加しただけでは、XAML側から新しいStrings.Xxxを参照するとビルドエラーになる。
+
+対応 : .resxを編集したら、対応するDesigner.csのプロパティも手動で追記する。
+
+# WinRT型(Windows.*)とWPF型の名前衝突
+
+Windows.Media.Ocr(OCR)などWinRT APIを使う際、Windows.Graphics.ImagingとSystem.Windows.Media.Imagingの両方にBitmapDecoder/BitmapFrameが存在し、両方usingしていると型名があいまいになる。
+
+対応 : 衝突する型だけ`Windows.Graphics.Imaging.BitmapDecoder`のように完全修飾名で書く。\
+usingのエイリアス(`using WinRTBitmapDecoder = Windows.Graphics.Imaging.BitmapDecoder;`)でも回避できる。
