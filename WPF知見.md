@@ -61,3 +61,17 @@ Grid等のPanelはBackground未指定(null)だと、子要素の無い空領域�
 
 対応 : クリックを拾いたいPanelに`Background="Transparent"`を指定する。\
 見た目は変わらずヒットテスト対象になる。
+
+# Keyboard.ClearFocus()だけではLostFocusが発火しない
+
+WPFにはキーボードフォーカス(Keyboard.FocusedElement)と
+論理フォーカス(FocusManager、フォーカススコープ単位)の
+2種類があり、別々に管理されている。
+
+Keyboard.ClearFocus()はキーボードフォーカスのみを外す。\
+コントロールのLostFocusイベント(TextBox等の編集確定に使う)は
+論理フォーカスに紐づくため、これだけでは発火しない。
+
+対応 : `FocusManager.SetFocusedElement(FocusManager.GetFocusScope(element), null)`で
+論理フォーカスも明示的に外す。\
+両方外す場合はKeyboard.ClearFocus()と併用する。
