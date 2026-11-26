@@ -1,7 +1,27 @@
-# DevGuidelines
+# 開発ガイドライン プロジェクト指示
 
-本リポジトリでの作業ルール。\
-共通ルールは`CommonGuideLine.md`に従う。
+Claudeと人間の開発進行ルール・技術知見を一元管理する。\
+各プロジェクトのCLAUDE.mdから参照される。
+
+# 管理方法
+
+本リポジトリはClaude管理塔で管理する。\
+Issue・MRの作成とマージは管理塔から行う。\
+`.claude-tower/`配下には管理塔が使うファイルを置く。
+
+# ドキュメント構成
+
+- `CommonGuideLine.md` : 全プロジェクト共通の開発進行ルール
+- `CharpGuideLine.md` : C#/.NETの技術知見
+- `WpfGuideLine.md` : WPF/.NETの技術知見
+
+# 編集時のルール
+
+本リポジトリのドキュメント自体も`CommonGuideLine.md`のルールに従う。
+
+- 特定プロジェクト固有の事情は書かず、全プロジェクトに通用する形にして書く。
+- ファイルを追加・改名した場合、本ファイル・`README.md`・`CommonGuideLine.md`の知見一覧を合わせて更新する。
+- ファイルを改名した場合、参照元プロジェクトのCLAUDE.mdの更新を人間に確認する。
 
 # FBの取り込み
 
